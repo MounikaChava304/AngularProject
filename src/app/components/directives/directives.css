@@ -1,0 +1,60 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.card img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+.card .title {
+  font-size: 13px;
+  font-weight: bold;
+  height: 35px;
+  overflow: hidden;
+}
+.card .price {
+  color: green;
+  font-size: 12px;
+  margin: 4px 0;
+}
+.card .category {
+  font-size: 11px;
+  color: #555;
+}
+
+.inactive{
+  opacity: 0.6;
+  font-style:italic
+}
+.manager{
+  font-weight: bold;
+  color : blue;
+}
+.badge {
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.manager-row td {
+  background-color: lightyellow;
+}
+
+.developer-row td {
+  background-color: lightblue;
+}
+
+.tester-row td {
+  background-color: lightpink;
+}

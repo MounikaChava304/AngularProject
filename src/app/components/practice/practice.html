@@ -1,0 +1,105 @@
+<!-- <div class="border border-2 rounded-2 p-2 m-2">
+  <select [(ngModel)]="taskStatus">
+    <option>All</option>
+    <option>Completed</option>
+    <option>Pending</option>
+  </select>
+
+  <ul>
+    @for (task of tasks; track task.id) {
+      @if (
+        taskStatus === 'All' ||
+        (taskStatus === 'Completed' && task.completed) ||
+        (taskStatus === 'Pending' && !task.completed)
+      ) {
+        <li>
+          <input type="checkbox" [(ngModel)]="task.completed" />
+          <span [style.text-decoration]="task.completed ? 'line-through' : 'none'">
+            {{ task.title }}
+          </span>
+        </li>
+      }
+    }
+  </ul>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <select [(ngModel)]="productCategory">
+    <option>All</option>
+    <option>women's clothing</option>
+    <option>jewelery</option>
+    <option>electronics</option>
+    <option>men's clothing</option>
+    <option>grocery</option>
+  </select>
+  <div class="card-container">
+    @for (product of categorizedProducts; track product.id) {
+      <div class="card">
+        <img [src]="product.image" />
+        <p>Name: {{ product.title }}</p>
+        <p>Price: ${{ product.price }}</p>
+        <p>Category: {{ product.category }}</p>
+      </div>
+    } @empty {
+      <p>No Products found</p>
+    }
+  </div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div class="cart-card-container">
+    @for (item of cartItems; track item.id) {
+      <div class="cart-card">
+        <h3>{{ item.name }}</h3>
+        <p>Unit Price: {{ item.price }}</p>
+        <button (click)="decreaseQuantity(item)">-</button>
+        <span  style="margin-right: 10px; margin-left: 10px;">{{ item.qty }}</span>
+        <button (click)="increaseQuantity(item)">+</button>
+        <p>Item Total Price : {{ item.price * item.qty }}</p>
+      </div>
+    }@empty{
+      <p>No Products Found</p>
+    }
+  </div>
+  <div>
+    <h4> Total Amount : {{totalCartPrice}}</h4>
+  </div>
+</div> -->
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div style="text-align: center">Question 4: Display Employees</div>
+  <h3>Employee List:</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>emp Id</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Salary</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track emp.id) {
+        <tr
+          [ngClass]="{
+            inactive: emp.status === 'Inactive',
+            'manager-row': emp.role === 'Manager',
+            'developer-row': emp.role === 'Developer',
+            'tester-row': emp.role === 'Tester',
+          }"
+        >
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.role }}</td>
+          <td [ngStyle]="getSalaryColor(emp.salary)">
+            <span class="badge" [ngStyle]="getBadgeColor(emp.salary)">
+              {{ emp.salary }}
+            </span>
+          </td>
+          <td>{{ emp.status }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

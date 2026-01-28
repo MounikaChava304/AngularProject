@@ -1,0 +1,221 @@
+<h2 class="text-center">Directives Assignment</h2>
+<!--<h2 class="text-center">Let's Learn Directives</h2>
+
+ <div class="border border-2 rounded-2 p-2 m-2">
+  <div>if-else</div>
+  <input type="number" [(ngModel)]="num" />
+  @if(num%2 == 0){
+  <div>{{ num }} is Even</div>
+  }@else {
+  <div>{{ num }} is Odd</div>
+  }
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>switch</div>
+  @switch (num){ @case (1) {
+  <h1>Monday</h1>
+  } @case (2) {
+  <h1>Tuesday</h1>
+  } @case (3) {
+  <h1>Wednesday</h1>
+  } @case (4) {
+  <h1>Thursday</h1>
+  } @case (5) {
+  <h1>Friday</h1>
+  } @case (6) {
+  <h1>Saturday</h1>
+  } @case (7) {
+  <h1>Sunday</h1>
+  } @default {
+  <h1>Not a valid number</h1>
+  } }
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Car List using For::</div>
+  <ol>
+    @for (car of carArr; track $index) {-->
+<!--track $index mandatory in for directive. It is internally used to identify each element uniquely-->
+<!--<li [style.color]="$even ? 'red' : 'purple'">{{ car }}</li>
+    }@empty { Empty list of cars }
+  </ol>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Car DropDown using For::</div>
+  <select>
+    @for (car of carArr; track $index) {
+    <option>{{ car }}</option>
+    }
+  </select>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <h3>Employee List:</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>sl#</th>
+        <th>emp Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>is First?</th>
+        <th>is Last?</th>
+        <th>is Even?</th>
+        <th>is Odd?</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track emp.eId) {
+      <tr [style.color]="$odd ? 'red' : 'blue'">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ emp.eId }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.sal }}</td>
+        <td>{{ emp.gender }}</td>
+        <td>{{ $first }}</td>
+        <td>{{ $last }}</td>
+        <td>{{ $even }}</td>
+        <td>{{ $odd }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <h3>ngStyle is used to apply some style conditionally</h3>
+  <input type="number" [(ngModel)]="num" />
+  <div [style.color]="num % 2 == 0 ? 'blue' : 'red'">Apply Color Dynamically</div>
+  <p [style.fontSize.px]="num % 2 == 0 ? 24 : 16">Add style with unit</p>
+  <p [style.background-color]="num % 2 == 0 ? 'green' : 'blue'">Add style conditionally</p>
+  <p
+    [ngStyle]="
+      num % 2 == 0
+        ? {
+            color: 'red',
+            border: '5px dotted green',
+            padding: '10px'
+          }
+        : {
+            color: 'blue',
+            border: '5px dotted purple',
+            padding: '5px'
+          }
+    "
+  >
+    NgStyle for multiple values
+  </p>
+  <p [ngStyle]="myFunction()">NgStyle for multiple values</p>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <h3>ngClass is used to apply css classes conditionally</h3>
+  <input type="number" [(ngModel)]="num" />
+  <button [ngClass]="['btn', num % 2 == 0 ? 'btn-success' : 'btn-danger']">Test Button</button>
+</div> -->
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div style="text-align: center">Question 1: Display Tasks</div>
+  <select [(ngModel)]="taskStatus">
+    <!-- Used 2 way binding to update taskStatus based on dropdown selection-->
+    <option>All</option>
+    <option>Completed</option>
+    <option>Pending</option>
+  </select>
+  <ul>
+    @for (task of tasks; track task.id) { @if ((taskStatus === 'All' ) || (taskStatus ==='Completed'
+    && task.completed) || (taskStatus === 'Pending' && !task.completed) ){
+    <li>
+      <input type="checkbox" [(ngModel)]="task.completed" />
+      <span [style.text-decoration]="task.completed ? 'line-through' : 'none'">
+        {{ task.title }}
+      </span>
+    </li>
+    } }
+  </ul>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div style="text-align: center">Question 2: Display Products in card format</div>
+  <select [(ngModel)]="productCategory">
+    <option>All</option>
+    <option>men's clothing</option>
+    <option>women's clothing</option>
+    <option>jewelery</option>
+    <option>electronics</option>
+    <!-- <option>grocery</option> -->
+  </select>
+  <div class="card-container">
+    @for (product of categorizedProducts; track product.id) {
+    <div class="card">
+      <img [src]="product.image" />
+      <p>{{ product.title }}</p>
+      <p>{{ product.price }}</p>
+      <p>{{ product.category }}</p>
+    </div>
+    }@empty {
+    <p>No Products Found</p>
+    }
+  </div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div style="text-align: center">Question 3: Display Cart</div>
+
+  <div>
+    @for (item of cartItems; track item.id) {
+    <p>Name: {{ item.name }}</p>
+    <p>price: {{ item.price }}</p>
+    <button (click)="decreaseQty(item)">-</button>
+    <span>{{ item.qty }}</span>
+    <button (click)="increaseQty(item)">+</button>
+    <p>Item Total: ${{ item.price * item.qty }}</p>
+    }@empty {
+    <p>No Products Found</p>
+    }
+  </div>
+  <h2>Total: ${{ getTotalPrice() }}</h2>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div style="text-align: center">Question 4: Display Employees</div>
+  <h3>Employee List:</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>emp Id</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Salary</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees1; track emp.id) {
+      <tr
+        [ngClass]="{
+          inactive: emp.status === 'Inactive',
+          'manager-row': emp.role === 'Manager',
+          'developer-row': emp.role === 'Developer',
+          'tester-row': emp.role === 'Tester'
+        }"
+      >
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.name }}</td>
+        <td [ngClass]="{ manager: emp.role == 'Manager' }">
+          {{ emp.role }}
+        </td>
+        <td [ngStyle]="getSalaryColor(emp.salary)">
+          <span class="badge" [ngStyle]="getBadgeColor(emp.salary)">
+            {{ emp.salary }}
+          </span>
+        </td>
+        <td>{{ emp.status }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

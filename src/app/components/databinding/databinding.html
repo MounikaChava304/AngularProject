@@ -1,0 +1,141 @@
+<h2 class="text-center">Let's Learn DataBinding</h2>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>userName: {{ userName }}</div>
+  <div>userName: <span [innerText]="userName"></span></div>
+  <div>userName: <span bind-innerText="userName"></span></div>
+  <hr />
+  <img src="{{ img_url }}" alt="" width="300" height="350" />
+  <img [src]="img_url" alt="" width="300" height="350" />
+  <img bind-src="img_url" alt="" width="300" height="350" />
+  <hr />
+  <div>1 way: <input type="text" value="{{ userName }}" /></div>
+  <div>1 way: <input type="text" class="my-1" [value]="userName" /></div>
+  <div>1 way: <input type="text" class="my-1" bind-value="userName" /></div>
+  <div>2 way: <input type="text" class="my-1" [(ngModel)]="userName" /></div>
+  <hr />
+  <button class="btn btn-primary" disabled="{{ flag }}">Click Me</button>
+  <button class="btn btn-primary mx-1" [disabled]="flag">Click Me</button>
+  <button class="btn btn-primary mx-1" bind-disabled="flag">Click Me</button>
+  <button class="btn btn-primary mx-1" (click)="toggleFlag()">Toggle</button>
+  <button class="btn btn-primary mx-1" on-click="toggleFlag()">Toggle</button>
+  <hr />
+  <input type="text" id="box1" value="{{ userName }}" />
+  <div>Attribute binding:</div>
+  <textarea name="" id="" [maxLength]="max_length"></textarea>
+  <textarea name="" id="" [attr.maxlength]="max_length"></textarea>
+  <textarea name="" id="" maxlength="20"></textarea>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>template Variables</div>
+  @let name = user.name;
+  <div>Name: {{ name }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>Addition of 2 numbers using 2-way binding:</div>
+  <input type="number" [(ngModel)]="num1" />
+  <input type="number" [(ngModel)]="num2" />
+  <div>Addition of {{ num1 }} and {{ num2 }} is {{ num1 + num2 }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>Addition of 2 numbers using template reference variable:</div>
+  <input type="number" id="box1" #num3 />
+  <input type="number" id="box2" ref-num4 />
+  <div>Addition of {{ num3.value }} and {{ num4.value }} is {{ addResult }}</div>
+  <button class="btn btn-success" (click)="addition(+num3.value, +num4.value)">Add</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 1: Show Hide Paragraph</div>
+  <p [hidden]="!isVisible">Hello Angular</p>
+  <button class="btn btn-primary mx-1" (click)="paragraphVisibility()">Show/Hide</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 2: Display Remaining Characters</div>
+  <textarea [(ngModel)]="message1" [maxLength]="max_length" (input)="remainingChar()"></textarea>
+  <div>remaining characters: {{ remaining }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 3: Display Character Count and Word Count</div>
+  <textarea [(ngModel)]="message2" [maxLength]="max_length" (input)="typedCharAndWords()"></textarea>
+  <div>typed characters: {{ characters }}</div>
+  <div>typed words : {{ wordCount }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 4: Drop Down state lookup</div>
+  <select [(ngModel)]="selectedState">
+    <option value="">Select State</option>
+    <option value="California">California</option>
+    <option value="Massachusetts">Massachusetts</option>
+    <option value="Virginia">Virginia</option>
+    <option value="Maryland">Maryland</option>
+    <option value="Texas">Texas</option>
+  </select>
+  <div>selectedState: {{ selectedState }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 5: Show Hide Password</div>
+  <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" />
+  <button (click)=  togglePwdText()>{{ showPassword ? 'Hide' : 'Show' }}
+  </button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 6: Increment, Decrement, reset </div>
+  <div><b>{{ counter }}</b></div>
+  <button class="btn btn-primary mx-1" (click)="incrementCounter()">Increment</button>
+  <button class="btn btn-primary mx-1" (click)="decrementCounter()">Decrement</button>
+  <button class="btn btn-primary mx-1" (click)="resetCounter()">Reset</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 7: Convert Temperature </div>
+  <input type="number" [(ngModel)]="celsius" placeholder="Enter °C">
+  <button class="btn btn-primary mx-1" (click)="convert()">Convert</button>
+  <div> {{fahrenheit !== null ? fahrenheit:''}}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 8: Arithmetic Operation</div>
+  <input type="number" [(ngModel)]="number1" />
+  <input type="number" [(ngModel)]="number2" />
+
+  <select [(ngModel)]="operator">
+    <option value="">Select</option>
+    <option value="+">Add</option>
+    <option value="-">Subtract</option>
+    <option value="*">Multiply</option>
+    <option value="/">Divide</option>
+  </select>
+
+  <button class="btn btn-primary mx-1" (click)="calculate()">Calculate</button>
+  <div><h3>Result: {{ result }}</h3></div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center">
+  <div>Question 9: Increase Decrease Font Size</div>
+  <p [style.fontSize.px]="fontSize">Click the button to increase and decrease font size accordingly</p>
+  <button class="btn btn-primary mx-1" (click)="increaseFontSize()">Zoom In</button>
+  <button class="btn btn-primary mx-1" (click)="decreaseFontSize()">Zoom Out</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2" style="text-align: center" [style.backgroundColor]="backGroundColor">
+  <div>Question 10: Change BackGround Color</div>
+  <select [(ngModel)]="backGroundColor">
+    <option value="">Select Color</option>
+    <option value="Red">Red</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    <option value="Grey">Grey</option>
+  </select>
+</div>
+
+
+

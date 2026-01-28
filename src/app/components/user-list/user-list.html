@@ -1,0 +1,21 @@
+<h3 class="text-center">User List</h3>
+
+<div class="container">
+  <div class="row">
+    @for (user of userArr; track $index) {
+      <div class="col-sm-3">
+        <div class="card">
+          <img src="https://icons8.com/icons/set/default-user-3d" class="card-img-top" alt="..." />
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ user.username }}</h5>
+            <h5 class="card-title">{{ user.name }}</h5>
+            <h5 class="card-title">{{ user.email }}</h5>
+            <h5 class="card-title">{{ user.phone }}</h5>
+            <h5 class="card-title">{{ user.address.city }}</h5>
+            <button class="btn btn-primary">Details</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

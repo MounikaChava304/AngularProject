@@ -1,0 +1,75 @@
+<h3 class="text-center" appHighlight>Product List</h3> <!---add CharOnly-->
+<!-- <div>
+  <button class="btn btn-primary" (click)="openAlert()">Open Alert</button>
+  <button class="btn btn-primary" (click)="openSnackBar()">Open Snack Bar</button>
+</div> -->
+
+<div class="container">
+    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px">
+    <!-- The below div is for Category search-->
+    <div style="display: inline-flex; align-items: center; margin-right: auto">
+      <span style="margin-right: 4px; white-space: nowrap">category: </span>
+      <select [(ngModel)]="productCategory" style="margin-right: auto">
+        <option>All</option>
+        <option>men's clothing</option>
+        <option>women's clothing</option>
+        <option>jewelery</option>
+        <option>electronics</option>
+      </select>
+    </div>
+    <!-- The below input box is for search box-->
+    <input
+      type="text"
+      placeholder="Enter title to search"
+      [(ngModel)]="searchKeyword"
+      style="align-items: center; margin: 0 auto" appAlphanumeric 
+    />
+    <!-- The below div is for sorting dropdown-->
+    <div style="display: inline-flex; align-items: center; margin-left: auto">
+      <span style="margin-right: 4px; white-space: nowrap">sort by: </span>
+      <select [(ngModel)]="sortFilter" style="padding: 2px 4px; min-width: auto">
+        <option>All</option>
+        <option>Price : Low - High</option>
+        <option>Price : High - Low</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- | paginate: { itemsPerPage: 4, currentPage: p } -- This line allows to display subset of products according to page number-->
+    @for (
+      product of categorizedProducts | paginate: { itemsPerPage: 4, currentPage: p };
+      track $index
+    ) {
+      <div class="col-sm-3">
+        <div class="card">
+          <img src="{{ product.image }}" class="card-img-top" alt="..." height="200" />
+          <div style = "background-color: aquamarine;" class="card-body text-center" appZoomin>
+            <h5 class="card-title">{{ product.title }}</h5>
+            <!-- <p class="card-text">{{ product.id }}</p> -->
+            <p class="card-text text-truncate">{{ product.category }}</p>
+            <p class="card-text text-truncate">{{ product.description }}</p>
+            <p class="card-text">Price : {{ product.price }}</p>
+            <p class="card-text">
+              Rating : {{ product.rating.rate }}
+              @for (ele of starArr; track $index) {
+                <fa-icon
+                  [icon]="getStarType(product.rating.rate, $index + 1)"
+                  style="color: gold"
+                  (click)="setRating(product, $index + 1)"
+                ></fa-icon>
+              }
+            </p>
+            <button class="btn btn-primary">Details</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-4 offset-4">
+      <!-- This allows to switch from one page to another-->
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

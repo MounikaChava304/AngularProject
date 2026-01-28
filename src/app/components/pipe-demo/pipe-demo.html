@@ -1,0 +1,183 @@
+<h3 class="text-center">Let's learn Pipes</h3>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>upperCase, lowerCase, titleCase pipe</h5>
+  <div>userName: {{ userName }}</div>
+  <div>userName with uppercase: {{ userName | uppercase }}</div>
+  <div>userName with lowercase: {{ userName | lowercase }}</div>
+  <div>userName with titlecase {{ userName | titlecase }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>currency pipe</h5>
+  <div>Salary: {{ mySal }}</div>
+  <div>Salary in USD: {{ mySal | currency }}</div>
+  <div>Salary in INR: {{ mySal | currency: 'INR' : 'code' }}</div>
+  <div>Salary in INR: {{ mySal | currency: 'INR' : 'symbol' }}</div>
+  <div>Salary in Euro: {{ mySal | currency: '&euro;' }}</div>
+  <div>Salary in INR: {{ mySal | currency: 'USD' : 'code' }}</div>
+  <!-- display USD 5000-->
+  <div>Salary in INR: {{ mySal | currency: 'USD' : 'symbol' }}</div>
+  <!--- display $5000-->
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Date pipe</h5>
+  <div>Date: {{ dateObj }}</div>
+  <!-- Date: Tue Jan 27 2026 19:56:22 GMT-0500 (Eastern Standard Time) -->
+  <div>{{ dateObj | date }}</div>
+  <!-- Jan 27, 2026 -->
+  ===========================================================================
+  <div>{{ dateObj | date: 'short' }}</div>
+  <!-- 1/27/26, 7:56 PM -->
+  <div>{{ dateObj | date: 'medium' }}</div>
+  <div>{{ dateObj | date: 'long' }}</div>
+  <div>{{ dateObj | date: 'full' }}</div>
+  =============================================================================
+  <div>{{ dateObj | date: 'shortDate' }}</div>
+  <!-- 1/27/26 -->
+  <div>{{ dateObj | date: 'mediumDate' | uppercase }}</div>
+  <!-- Jan 27, 2026 , pipe chaining JAN 27,2026 -->
+  <div>{{ dateObj | date: 'longDate' | uppercase }}</div>
+  <!-- January 27, 2026 -->
+  <div>{{ dateObj | date: 'fullDate' }}</div>
+  <!-- Tuesday, January 27, 2026 -->
+  ==============================================================================
+  <div>{{ dateObj | date: 'shortTime' }}</div>
+  <!--7:56 PM -->
+  <div>{{ dateObj | date: 'mediumTime' }}</div>
+  <!-- 7:56:22 PM -->
+  <div>{{ dateObj | date: 'longTime' }}</div>
+  <!-- 7:56:22 PM GMT-5 -->
+  <div>{{ dateObj | date: 'fullTime' }}</div>
+  <!--7:56:22 PM GMT-05:00 -->
+  ===============================================================================
+  <div>{{ dateObj | date: 'dd-MMMM-yyyy' }}</div>
+  <!-- 27-January-2026 -->
+  <div>{{ dateObj | date: 'dd-MMM-yyyy' }}</div>
+  <!-- 27-Jan-2026 -->
+  ===============================================================================
+  <div>{{ dateObj | date: 'HH:mm:ss a' }}</div>
+  <!-- 19:59 also display AM/PM if added a -->
+  <div>{{ dateObj | date: 'fullTime' : 'UTC' }}</div>
+  <!-- 12:59:29 AM GMT+00:00-->
+  <div>{{ dateObj | date: 'fullTime' : 'EST' }}</div>
+  <!-- 8:00:34 PM GMT-05:00 EST Time-->
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Number pipe</h5>
+  <!--- Use format '3.2-5' : 
+        minIntegerDigits = 3 
+        minFractionDigits = 2 
+        maxFractionDigits = 5
+  -->
+  <div>{{ 12.111222333 | number: '3.2-5' }}</div>
+  <!-- 012.11122-->
+  <div>{{ 12.1 | number: '3.2-5' }}</div>
+  <!-- 012.10 -->
+  <div>{{ 0.5 | number: '3.2-5' }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Percent pipe</h5>
+  <div>{{ 0.5 | percent }}</div>
+  <div>{{ 0.05 | percent }}</div>
+  <div>{{ 0.75 | percent }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>JSON pipe</h5>
+  <div>{{ user }}</div>
+  <div>{{ user | json }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Key Value pipe</h5>
+  @for (entry of user | keyvalue; track $index) {
+    <div>{{ entry.key }} === {{ entry.value }}</div>
+  }
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Slice pipe</h5>
+  <div>{{ cars | slice: 2 : 4 }}</div>
+  <div>{{ 'Angular is a Framework' | slice: 0 : 7 }}</div>
+  <div>{{ 'Angular is a Framework ' | slice: 0 : -4 }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>async pipe</h5>
+  <div>{{ num }}</div>
+  <div>{{ num | async }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Custom Pipe: (Ordinal)</h5>
+  <input type="number" [(ngModel)]="cardinal" />
+  <div>{{ cardinal }}</div>
+  <div>{{ cardinal | ordinal }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Custom Pipe: (Roman)</h5>
+  <input type="number" [(ngModel)]="romanInteger" />
+  <div>{{ romanInteger }}</div>
+  <div>{{ romanInteger | roman }}</div>
+</div>
+
+<div class="border border-3 rounded-3 m-3 p-3">
+  <h5>Custom Pipe: (Age)</h5>
+  <input type="text" [(ngModel)]="birthDate" />
+  <div>{{ birthDate }}</div>
+  <div>{{ birthDate | age }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <h3>Custom Pipe: (Salutation)</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Emp Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track emp.eId) {
+        <tr>
+          <td>{{ emp.eId }}</td>
+          <td>{{ emp.name | salutation: emp.gender }}</td>
+          <td>{{ emp.sal }}</td>
+          <td>{{ emp.gender }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <h3>Custom Pipe: (Employee Search By Name)</h3>
+  <input type="text" placeholder="Enter Employee's Name" [(ngModel)]="searchText" />
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Emp Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees | searchEmployee: searchText; track emp.eId) {
+        <tr>
+          <td>{{ emp.eId }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.sal }}</td>
+          <td>{{ emp.gender }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
