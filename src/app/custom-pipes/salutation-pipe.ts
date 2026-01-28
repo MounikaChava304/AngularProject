@@ -10,7 +10,7 @@ export class SalutationPipe implements PipeTransform {
     if (gender === 'male') {
       res = 'Mr. ' + name;
     } else if (gender === 'female') {
-      res = 'Ms. ' + name
+      res = 'Miss. ' + name
     } else {
       res = name;
     }
