@@ -10,10 +10,11 @@ import { PipeDemo } from '../pipe-demo/pipe-demo';
 import { ParentDemo } from '../parent-demo/parent-demo';
 import { Categories } from "../categories/categories";
 import { CategoryItem } from "../category-item/category-item";
+import { EmployeeParent } from "../../employee-parent/employee-parent";
 
 @Component({
   selector: 'app-body',
-  imports: [Databinding, Directives, Practice, MyModal, UserList, ProductList, EmployeeCrud, PipeDemo, ParentDemo, Categories, CategoryItem],
+  imports: [Databinding, Directives, Practice, MyModal, UserList, ProductList, EmployeeCrud, PipeDemo, ParentDemo, Categories, CategoryItem, EmployeeParent],
   templateUrl: './body.html',
   styleUrl: './body.css',
 })
