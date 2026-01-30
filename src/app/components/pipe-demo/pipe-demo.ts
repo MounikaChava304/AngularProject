@@ -7,10 +7,11 @@ import { RomanPipe } from '../../custom-pipes/roman-pipe';
 import { AgePipe } from '../../custom-pipes/age-pipe';
 import { SalutationPipe } from '../../custom-pipes/salutation-pipe';
 import { SearchEmployeePipe } from '../../custom-pipes/search-employee-pipe';
+import { MySortPipe } from '../../custom-pipes/my-sort-pipe';
 
 @Component({
   selector: 'app-pipe-demo',
-  imports: [CommonModule, FormsModule, OrdinalPipe, RomanPipe, AgePipe, SalutationPipe, SearchEmployeePipe],
+  imports: [CommonModule, FormsModule, OrdinalPipe, RomanPipe, AgePipe, SalutationPipe, SearchEmployeePipe, MySortPipe],
   templateUrl: './pipe-demo.html',
   styleUrl: './pipe-demo.css',
 })
@@ -33,4 +34,5 @@ export class PipeDemo {
     { "eId": 102, "name": "sita", "sal": 9000, "gender": "female" },
     { "eId": 105, "name": "deepak", "sal": 8000, "gender": "male" }
   ]
+  numArr = [20,50,10,30,40];
 }

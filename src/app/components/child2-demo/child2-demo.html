@@ -1,0 +1,9 @@
+<p>child2-demo works!</p>
+<div>my parent's data a:{{aChild2}}</div>
+<div>my own data userName: {{userName}}</div>
+<div>my own data address: {{address}}</div>
+<div>
+  <input [(ngModel)]="address">
+</div>
+
+<button (click)="sendDataToParent()">Send Data To Parent</button>

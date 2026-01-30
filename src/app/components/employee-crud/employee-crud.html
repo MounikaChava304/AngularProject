@@ -26,7 +26,7 @@
               class="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#employeeModal"
-              (click)="selectedEmployee = emp"
+              (click)="viewEmployee(emp)"
             >
               View Emp Details
             </button>
@@ -40,7 +40,7 @@
             <fa-icon [icon]="faEdit" style="color: gray; margin-right: 10px"></fa-icon>
           </td>
           <td>
-            <fa-icon [icon]="faDelete" style="color: red" (click)="deleteEmployee()"></fa-icon>
+            <fa-icon [icon]="faDelete" style="color: red" (click)="deleteEmployee(emp.eId)"></fa-icon>
           </td>
         </tr>
       }

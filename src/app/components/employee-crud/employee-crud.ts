@@ -22,23 +22,22 @@ export class EmployeeCrud {
     { "eId": 102, "name": "sita", "sal": 9000, "gender": "female" },
     { "eId": 105, "name": "deepak", "sal": 8000, "gender": "male" }
   ]
-   p=1; //p represents current page
+  p = 1; //p represents current page
 
   faEdit = faPenToSquare;
   faDelete = faTrash;
   faStarSolid = faStarSolid;
   faStarRegular = faStarRegular;
-faStar = this.faStarSolid;
-  // faStar = this.faStarRegular;
-  // markFavourite() {
-  //   this.faStar =
-  //     this.faStar === this.faStarRegular
-  //       ? this.faStarSolid
-  //       : this.faStarRegular;
-  // }
+  faStar = this.faStarSolid;
 
-  deleteEmployee() {
-    Swal.fire('Are you sure ?', 'Do you want to Delete Employee ?');
+  deleteEmployee(eId: number) {
+    Swal.fire('Are you sure ?', 'Do you want to Delete Employee ?').then(result => {
+      if (result.isConfirmed) {
+        this.employees = this.employees.filter(emp => emp.eId !== eId);
+        new Snackbar('Employee Deleted'),
+          { position: 'top-center', theme: 'light', timeout: 5000, actionText: 'X' }
+      }
+    })
   }
 
   selectedEmployee: any = {};
@@ -57,7 +56,7 @@ faStar = this.faStarSolid;
 
   addEmployee() {
     //check if any employee details is null, if null throw error.
-    if (this.newEmployee.eId === null || this.newEmployee.name === '' || this.newEmployee.sal === null || this.newEmployee.gender === '') {
+  if (!this.newEmployee.eId || !this.newEmployee.name || !this.newEmployee.sal || !this.newEmployee.gender) {
       Swal.fire('All fields Required', 'Please enter Employee Details', 'error');
       return;
     }
