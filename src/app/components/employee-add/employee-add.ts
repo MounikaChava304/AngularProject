@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   outputs: ['addEvent']
 })
 export class EmployeeAdd {
- 
+
   newEmployee = {
     eId: null,
     name: '',
@@ -21,13 +21,14 @@ export class EmployeeAdd {
   addEvent = new EventEmitter();
 
   addEmployee() {
-    this.addEvent.emit(this.newEmployee);
-//Reset form
+    this.addEvent.emit({ ...this.newEmployee });
+
     this.newEmployee = {
       eId: null,
       name: '',
       sal: null,
-      gender: 'male'
+      gender: ''
     };
   }
 }
+

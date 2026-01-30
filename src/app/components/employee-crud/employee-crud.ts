@@ -1,20 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faStar as faStarSolid, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import { EmployeeTable } from '../employee-table/employee-table';
+import { EmployeeAdd } from '../employee-add/employee-add';
 import Swal from 'sweetalert2';
 import Snackbar from 'awesome-snackbar';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-employee-crud',
-  imports: [FormsModule, CommonModule, FontAwesomeModule, NgxPaginationModule],
+  imports: [EmployeeTable, EmployeeAdd, FontAwesomeModule],
   templateUrl: './employee-crud.html',
   styleUrl: './employee-crud.css',
 })
 export class EmployeeCrud {
+  constructor(private cdr: ChangeDetectorRef) { }
+
   employees = [
     { "eId": 101, "name": "sanjay", "sal": 5000, "gender": "male" },
     { "eId": 104, "name": "geeta", "sal": 8000, "gender": "female" },
@@ -22,58 +22,41 @@ export class EmployeeCrud {
     { "eId": 102, "name": "sita", "sal": 9000, "gender": "female" },
     { "eId": 105, "name": "deepak", "sal": 8000, "gender": "male" }
   ]
-  p = 1; //p represents current page
 
-  faEdit = faPenToSquare;
-  faDelete = faTrash;
-  faStarSolid = faStarSolid;
-  faStarRegular = faStarRegular;
-  faStar = this.faStarSolid;
-
-  deleteEmployee(eId: number) {
-    Swal.fire('Are you sure ?', 'Do you want to Delete Employee ?').then(result => {
+  deleteEmployee(empId: number) {
+    Swal.fire({
+      title: 'Are you sure ?',
+      text: 'Do you want to Delete Employee ?'
+    }).then(result => {
       if (result.isConfirmed) {
-        this.employees = this.employees.filter(emp => emp.eId !== eId);
-        new Snackbar('Employee Deleted'),
-          { position: 'top-center', theme: 'light', timeout: 5000, actionText: 'X' }
+        //Delete employee row from table view
+        this.employees = this.employees.filter(emp => emp.eId !== empId);
+        //Implemented our own change detection check point to make sure that table is updated after deleting row
+        this.cdr.markForCheck();
+        //display message using snackbar that Employee is deleted
+        new Snackbar('Employee Deleted',
+          { position: 'top-center', theme: 'light', timeout: 5000, actionText: 'X' })
       }
     })
   }
 
-  selectedEmployee: any = {};
-
-  // Set selected employee to view
-  viewEmployee(emp: any) {
-    this.selectedEmployee = emp;
-  }
-  //constructor to add employee into array
-  newEmployee: { eId: number, name: string, sal: number, gender: string } = {
-    eId: 0,
-    name: '',
-    sal: 0,
-    gender: ''
-  }
-
-  addEmployee() {
+  addEmployee(employee: any) {
     //check if any employee details is null, if null throw error.
-  if (!this.newEmployee.eId || !this.newEmployee.name || !this.newEmployee.sal || !this.newEmployee.gender) {
+    if (!employee.eId || !employee.name || !employee.sal || !employee.gender) {
       Swal.fire('All fields Required', 'Please enter Employee Details', 'error');
       return;
     }
     //Check if employee already exists with employee id, if exists throw error
-    if (this.employees.find(emp => emp.eId === this.newEmployee.eId)) {
+    if (this.employees.find(emp => emp.eId === employee.eId)) {
       Swal.fire('Duplicate ID', 'Employee ID already exists!', 'error');
       return;
     }
     //Add the Employee into Employee Array
-    this.employees.push({ ...this.newEmployee });
+    this.employees = [...this.employees, { ...employee }];
     //Display success message using snackbar
     new Snackbar('Employee Added Successfully',
       { position: 'top-center', theme: 'light', timeout: 5000, actionText: 'X' }
     );
 
-    //Reset the form after employee is added
-    this.newEmployee = { eId: 100, name: '', sal: 5000, gender: '' };
   }
-
 }

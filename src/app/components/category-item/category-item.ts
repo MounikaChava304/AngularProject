@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,9 +6,8 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './category-item.html',
   styleUrl: './category-item.css',
-  inputs:['categoryObj']
+  inputs: ['categoryObj']
 })
 export class CategoryItem {
-  categoryObj:any;
-
+  categoryObj: any;
 }

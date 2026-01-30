@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    @for(categoryObj of allCategories; track $index){
+    @for (categoryObj of allCategories; track $index) {
       <div class="col">
-        <app-category-item [categoryObj]="categoryObj"></app-category-item>
+        <app-category-item [categoryObj]="categoryObj" />
       </div>
     }
   </div>

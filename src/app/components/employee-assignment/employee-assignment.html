@@ -1,0 +1,140 @@
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div style="text-align: center"><h3>Employees</h3></div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>emp Id</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Salary</th>
+        <th>View Details</th>
+        <th>Rating</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees | paginate: { itemsPerPage: 4, currentPage: p }; track emp.eId) {
+        <tr>
+          <td>{{ emp.eId }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.sal }}</td>
+          <td>{{ emp.gender }}</td>
+          <td>
+            <!-- On click this button opens a Modal and display employee details-->
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#employeeModal"
+              (click)="viewEmployee(emp)"
+            >
+              View Emp Details
+            </button>
+          </td>
+          <!-- <td><button class="btn btn-primary" (click)="deleteEmployee()">Delete</button></td> -->
+          <td>
+            <fa-icon [icon]="faStar" style="color: gold; margin-right: 10px"></fa-icon>
+          </td>
+          <td>
+            <!-- <fa-icon [icon]="faStar" style="color: gold; margin-right: 10px" (click)="markFavourite()"></fa-icon> -->
+            <fa-icon [icon]="faEdit" style="color: gray; margin-right: 10px"></fa-icon>
+          </td>
+          <td>
+            <fa-icon [icon]="faDelete" style="color: red" (click)="deleteEmployee(emp.eId)"></fa-icon>
+          </td>
+        </tr>
+      }
+      @if (employees.length === 0) {
+        <tr>
+          <td class="text-center">No Employees Found</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="border border-2 rounded-2 p-2 m-2">
+    <div style="text-align: center"><h3>Add Employee</h3></div>
+    <form class="row g-3 mb-3">
+      <div class="col-md-2">
+        Enter Emp ID:
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Emp ID"
+          [(ngModel)]="newEmployee.eId"
+          name="eId"
+          min="101"
+          max="'200"
+        />
+      </div>
+      <div class="col-md-2">
+        Enter Emp Name:
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          [(ngModel)]="newEmployee.name"
+          name="name"
+        />
+      </div>
+      <div class="col-md-2">
+        Enter Emp Salary:
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Salary"
+          [(ngModel)]="newEmployee.sal"
+          name="sal"
+          min="5000"
+        />
+      </div>
+      <div class="col-md-2">
+        Select Gender
+        <select class="form-select" [(ngModel)]="newEmployee.gender" name="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-success" (click)="addEmployee()">Add Employee</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-sm-4 offset-4">
+      <!-- This allows to switch from one page to another-->
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!---- View Employee Details Modal-->
+<div
+  class="modal fade"
+  id="employeeModal"
+  tabindex="-1"
+  aria-labelledby="employeeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!--- Modal Header -->
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title fs-5" id="employeeModalLabel">
+          Employee Details
+        </h1>
+      </div>
+      <!-- Modal Body - Displays Employee Details-->
+      <div class="modal-body text-center">
+        <p>Employee ID:{{ selectedEmployee.eId }}</p>
+        <p>Name:{{ selectedEmployee.name }}</p>
+        <p>Salary:{{ selectedEmployee.sal }}</p>
+        <p>Gender:{{ selectedEmployee.gender }}</p>
+      </div>
+      <!-- Modal Footer -->
+      <div class="modal-footer text-center justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
