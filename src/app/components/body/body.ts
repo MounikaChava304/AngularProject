@@ -11,13 +11,16 @@ import { Categories } from "../categories/categories";
 import { CategoryItem } from "../category-item/category-item";
 import { EmployeeAssignment } from '../employee-assignment/employee-assignment';
 import { EmployeeCrud } from '../employee-crud/employee-crud';
+import { Demo2 } from "../demo2/demo2";
+import { Demo1 } from '../demo1/demo1';
+import { Employee } from '../employee/employee';
 
 @Component({
   selector: 'app-body',
-  imports: [Databinding, Directives, Practice, MyModal, UserList, ProductList, PipeDemo, ParentDemo, Categories, CategoryItem, EmployeeAssignment, EmployeeCrud],
+  imports: [Databinding, Directives, Practice, MyModal, UserList, ProductList, PipeDemo, ParentDemo, Categories, CategoryItem, EmployeeAssignment, EmployeeCrud, Demo2, Demo1, Employee],
   templateUrl: './body.html',
   styleUrl: './body.css',
 })
 export class Body {
-
+  flag = true;
 }

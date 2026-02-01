@@ -24,14 +24,15 @@ export class ParentDemo {
     this.addressParent = addressFromChild;
   }
   constructor() {
-    this.a = 100;
+  this.a =100;
     console.log("Parent constructor")
-  }
-  ngOnChanges() {
-    console.log('Parent ngOnChanges');
+    // console.log(this.myInputBox1)
   }
   ngOnInit() {
     console.log('Parent ngOnInit');
+  }
+  ngOnChanges() {
+    console.log('Parent ngOnChanges');
   }
   ngDoCheck() {
     console.log('Parent ngDoCheck');
@@ -44,6 +45,8 @@ export class ParentDemo {
   // }
   // ngAfterViewInit() {
   //   console.log('Parent ngAfterViewInit');
+  //   console.log(this.myInputBox1); 
+  //   this.myInputBox1.nativeElement.focus();
   // }
   // ngAfterViewChecked() {
   //   console.log('Parent ngAfterViewChecked');
@@ -51,4 +54,5 @@ export class ParentDemo {
   // ngOnDestroy() {
   //   console.log('Parent ngOnDestory');
   // }
+
 }
