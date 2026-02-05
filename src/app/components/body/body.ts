@@ -14,10 +14,14 @@ import { EmployeeCrud } from '../employee-crud/employee-crud';
 import { Demo2 } from "../demo2/demo2";
 import { Demo1 } from '../demo1/demo1';
 import { Employee } from '../employee/employee';
+import { HttpDemo1 } from '../http-demo1/http-demo1';
+import { CommentList } from '../comment-list/comment-list';
+import { EmployeeList } from '../employee-list/employee-list';
+import { UserCrud } from '../user-crud/user-crud';
 
 @Component({
   selector: 'app-body',
-  imports: [Databinding, Directives, Practice, MyModal, UserList, ProductList, PipeDemo, ParentDemo, Categories, CategoryItem, EmployeeAssignment, EmployeeCrud, Demo2, Demo1, Employee],
+  imports: [Databinding, Directives, Practice, MyModal, UserList, ProductList, PipeDemo, ParentDemo, Categories, CategoryItem, EmployeeAssignment, EmployeeCrud, Demo2, Demo1, Employee, HttpDemo1, CommentList, EmployeeList, UserCrud],
   templateUrl: './body.html',
   styleUrl: './body.css',
 })

@@ -126,15 +126,20 @@
     <option>Pending</option>
   </select>
   <ul>
-    @for (task of tasks; track task.id) { @if ((taskStatus === 'All' ) || (taskStatus ==='Completed'
-    && task.completed) || (taskStatus === 'Pending' && !task.completed) ){
-    <li>
-      <input type="checkbox" [(ngModel)]="task.completed" />
-      <span [style.text-decoration]="task.completed ? 'line-through' : 'none'">
-        {{ task.title }}
-      </span>
-    </li>
-    } }
+    @for (task of tasks; track task.id) {
+      @if (
+        taskStatus === 'All' ||
+        (taskStatus === 'Completed' && task.completed) ||
+        (taskStatus === 'Pending' && !task.completed)
+      ) {
+        <li>
+          <input type="checkbox" [(ngModel)]="task.completed" />
+          <span [style.text-decoration]="task.completed ? 'line-through' : 'none'">
+            {{ task.title }}
+          </span>
+        </li>
+      }
+    }
   </ul>
 </div>
 
@@ -150,14 +155,14 @@
   </select>
   <div class="card-container">
     @for (product of categorizedProducts; track product.id) {
-    <div class="card">
-      <img [src]="product.image" />
-      <p>{{ product.title }}</p>
-      <p>{{ product.price }}</p>
-      <p>{{ product.category }}</p>
-    </div>
-    }@empty {
-    <p>No Products Found</p>
+      <div class="card">
+        <img [src]="product.image" />
+        <p>{{ product.title }}</p>
+        <p>{{ product.price }}</p>
+        <p>{{ product.category }}</p>
+      </div>
+    } @empty {
+      <p>No Products Found</p>
     }
   </div>
 </div>
@@ -167,14 +172,14 @@
 
   <div>
     @for (item of cartItems; track item.id) {
-    <p>Name: {{ item.name }}</p>
-    <p>price: {{ item.price }}</p>
-    <button (click)="decreaseQty(item)">-</button>
-    <span>{{ item.qty }}</span>
-    <button (click)="increaseQty(item)">+</button>
-    <p>Item Total: ${{ item.price * item.qty }}</p>
-    }@empty {
-    <p>No Products Found</p>
+      <p>Name: {{ item.name }}</p>
+      <p>price: {{ item.price }}</p>
+      <button (click)="decreaseQty(item)">-</button>
+      <span>{{ item.qty }}</span>
+      <button (click)="increaseQty(item)">+</button>
+      <p>Item Total: ${{ item.price * item.qty }}</p>
+    } @empty {
+      <p>No Products Found</p>
     }
   </div>
   <h2>Total: ${{ getTotalPrice() }}</h2>
@@ -195,26 +200,26 @@
     </thead>
     <tbody>
       @for (emp of employees1; track emp.id) {
-      <tr
-        [ngClass]="{
-          inactive: emp.status === 'Inactive',
-          'manager-row': emp.role === 'Manager',
-          'developer-row': emp.role === 'Developer',
-          'tester-row': emp.role === 'Tester'
-        }"
-      >
-        <td>{{ emp.id }}</td>
-        <td>{{ emp.name }}</td>
-        <td [ngClass]="{ manager: emp.role == 'Manager' }">
-          {{ emp.role }}
-        </td>
-        <td [ngStyle]="getSalaryColor(emp.salary)">
-          <span class="badge" [ngStyle]="getBadgeColor(emp.salary)">
-            {{ emp.salary }}
-          </span>
-        </td>
-        <td>{{ emp.status }}</td>
-      </tr>
+        <tr
+          [ngClass]="{
+            inactive: emp.status === 'Inactive',
+            'manager-row': emp.role === 'Manager',
+            'developer-row': emp.role === 'Developer',
+            'tester-row': emp.role === 'Tester',
+          }"
+        >
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td [ngClass]="{ manager: emp.role == 'Manager' }">
+            {{ emp.role }}
+          </td>
+          <td [ngStyle]="getSalaryColor(emp.salary)">
+            <span class="badge" [ngStyle]="getBadgeColor(emp.salary)">
+              {{ emp.salary }}
+            </span>
+          </td>
+          <td>{{ emp.status }}</td>
+        </tr>
       }
     </tbody>
   </table>

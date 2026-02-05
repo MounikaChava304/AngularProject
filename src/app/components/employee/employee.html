@@ -1,7 +1,7 @@
 <div class="border border-2 rounded-2 p-2 m-2">
   <div class="border border-2 rounded-2 p-2 m-2">
-    <!--two way binding using [(ngModel)] and eventBinding using (change) -->
-    <select [(ngModel)]="selectedGender"(change)="displayEmployees()"> 
+    <!--two way binding using [(ngModel)] and eventBinding using (ngModelChange) -->
+    <select [(ngModel)]="selectedGender" (ngModelChange)="displayEmployees()">
       <option value="all">All</option>
       <option value="male">Male</option>
       <option value="female">Female</option>
@@ -10,7 +10,7 @@
   <div style="text-align: center">
     <h3>Employees</h3>
   </div>
-
+  
   <table class="table table-bordered">
     <thead>
       <tr>

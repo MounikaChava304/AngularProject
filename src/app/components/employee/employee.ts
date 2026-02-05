@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from '../../services/employee-service';
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-employee',
@@ -13,8 +12,8 @@ export class Employee {
 
   employees: any[] = [];
   selectedGender: string = 'all';
-  //Injected Employee Service and ChangeDetectorRef as dependencies
-  constructor(private employeeService: EmployeeService, private cdr: ChangeDetectorRef) {
+  //Injected Employee Service as dependency
+  constructor(private employeeService: EmployeeService) {
 
   }
   //On Initialization of the component, fetches data from displayEmployees method  to display data
@@ -30,7 +29,6 @@ export class Employee {
     } else if (this.selectedGender === 'female') {
       this.employees = this.employeeService.getFemaleEmployees();
     }
-    this.cdr.markForCheck(); //Used to load changes/refresh page whenever this method is invoked
   }
 }
 
