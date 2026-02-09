@@ -1,0 +1,15 @@
+<h3 class="text-center">User Details</h3>
+
+<div class="col-sm-4 offset-4">
+  <div class="card">
+    <img src="https://toppng.com/uploads/preview/icons-logos-emojis-user-icon-png-transparent-11563566676e32kbvynug.png"
+      class="card-img-top" alt="...">
+    <div class="card-body text-center">
+      <h5 class="card-title">{{user().username}}</h5>
+      <p class="card-text">{{user().id}}</p>
+      <p class="card-text">{{user().name}}</p>
+      <p class="card-text">{{user().email}}</p>
+      <p class="card-text">{{user().phone}}</p>
+      <p class="card-text">{{user().address.city}}</p>
+    </div>
+  </div>

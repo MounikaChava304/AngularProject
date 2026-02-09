@@ -1,0 +1,15 @@
+<h3 class="text-center">Observable Demo</h3>
+
+<div class="border border-2 p-2 m-2">
+  <h4>Number: {{ num$ | async }}</h4>
+  <h4>Even Number: {{ even_num$ | async }}</h4>
+  <h4>Square Number: {{ square_num$ | async }}</h4>
+</div>
+
+<div class="border border-2 p-2 m-2">
+  <h4>Clock: {{ time$ | async }}</h4>
+</div>
+
+<div class="border border-2 p-2 m-2">
+  <button #loginBtn>Login</button>
+</div>

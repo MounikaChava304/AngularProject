@@ -13,12 +13,13 @@ import Snackbar from 'awesome-snackbar';
 import { Highlight } from '../../custom-directives/highlight';
 import { Zoomin } from '../../custom-directives/zoomin';
 import { Alphanumeric } from '../../custom-directives/alphanumeric';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-product-list',
   imports: [FormsModule, CommonModule,
-    FontAwesomeModule, NgxPaginationModule, Highlight, Zoomin, Alphanumeric], //add CharOnly if using that
+    FontAwesomeModule, NgxPaginationModule, Highlight, Zoomin, Alphanumeric, RouterLink], //add CharOnly if using that
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })

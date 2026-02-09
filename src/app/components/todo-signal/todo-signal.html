@@ -1,0 +1,35 @@
+<h2>Todo List</h2>
+
+<p>
+ Completed: {{ todoService.completedToDos().length }} | Remaining:
+  {{ todoService.remainingToDos().length }}
+</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (todo of todoService.todos(); track todo.id) {
+      <tr>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.completed ? 'Completed' : 'Pending' }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            style="margin-right: 8px"
+            (click)="todoService.toggleTodo(todo.id)"
+          >
+            Toggle
+          </button>
+          <button class="btn btn-danger" (click)="todoService.deleteTodo(todo.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

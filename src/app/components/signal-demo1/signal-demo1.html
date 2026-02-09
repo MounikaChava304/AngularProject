@@ -1,0 +1,37 @@
+<h3 class="text-center">Let's Learn Signals</h3>
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <div>count: {{count()}}</div>
+  <div>doubleCount: {{doubleCount()}}</div>
+  <div>squareCount: {{squareCount()}}</div>
+  <button class="btn btn-success" (click)="increment()">Increment</button>
+  <button class="btn btn-primary mx-2" (click)="decrement()">decrement</button>
+  <button class="btn btn-danger" (click)="reset()">reset</button>
+</div>
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <h2>Cookie recipe</h2>
+  <label>
+    # of cookies:
+    <input type="range" min="10" max="100" step="10" [value]="cookieCount()" (input)="updateCookieCount($event)" />
+    {{ cookieCount() }}
+  </label>
+  <p>Butter: {{ butter() }} cup(s)</p>
+  <p>Sugar: {{ sugar() }} cup(s)</p>
+  <p>Flour: {{ flour() }} cup(s)</p>
+</div>
+
+<div class="border border-3 rounded-3 p-3 m-3">
+  <div class="card">
+    <div class="card-body text-center">
+      <h5 class="card-title">{{userData().id}}</h5>
+      <h5 class="card-title">{{userData().username}}</h5>
+      <p class="card-text">{{userData().email}}</p>
+      <p class="card-text">{{userData().phone}}</p>
+      <p class="card-text">{{userData().address.city}}</p>
+      <p class="card-text">{{userData().website}}</p>
+      <button class="btn btn-primary" (click)="incrementUserId()">Increment</button>
+      <button class="btn btn-danger mx-2" (click)="destroyEffect()">Destroy Effect</button>
+    </div>
+  </div>
+</div>

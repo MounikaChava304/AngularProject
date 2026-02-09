@@ -1,0 +1,46 @@
+<h3 class="text-center">Template Form</h3>
+
+<div class="border border-3 rounded-3 p-3 offset-4 col-sm-4">
+  <form #signupForm="ngForm" (submit)="submitMyForm(signupForm)">
+    <p>
+      FirstName:
+      <input
+        name="firstName"
+        #firstName="ngModel"
+        [(ngModel)]="formObj.firstName"
+        required
+        minlength="5"
+      />
+      @if (firstName.hasError('required')) {
+        <span class="text-danger">FirstName is required</span>
+      }
+      @if (firstName.hasError('minlength')) {
+        <span class="text-danger">FirstName should have minimum 5 chars</span>
+      }
+    </p>
+    <p>LastName: <input name="lastName" #firstName="ngModel" [(ngModel)]="formObj.lastName" /></p>
+    <p>Email: <input name="email" [(ngModel)]="formObj.email" required /></p>
+    <div ngModelGroup="address">
+      <p>City: <input name="city" [(ngModel)]="formObj.address.city" /></p>
+      <p>State: <input name="state" ngModel /></p>
+      <p>Pincode: <input name="pincode" ngModel /></p>
+    </div>
+
+    <input type="submit" value="Submit" class="mx-2" [disabled]="signupForm.invalid" />
+    <input type="reset" value="Reset" />
+  </form>
+  <hr />
+
+  <pre>
+    {{ signupForm.value | json }}
+  </pre>
+</div>
+
+<style>
+  input.ng-invalid {
+    border: 3px solid red;
+  }
+  input.ng-valid {
+    border: 3px solid green;
+  }
+</style>

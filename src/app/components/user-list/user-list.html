@@ -3,19 +3,22 @@
 <div class="container">
   <div class="row">
     @for (user of userArr; track $index) {
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://icons8.com/icons/set/default-user-3d" class="card-img-top" alt="..." />
-          <div class="card-body text-center">
-            <h5 class="card-title">{{ user.username }}</h5>
-            <h5 class="card-title">{{ user.name }}</h5>
-            <h5 class="card-title">{{ user.email }}</h5>
-            <h5 class="card-title">{{ user.phone }}</h5>
-            <h5 class="card-title">{{ user.address.city }}</h5>
-            <button class="btn btn-primary">Details</button>
-          </div>
+    <div class="col-sm-3">
+      <div class="card">
+        <img
+          src="https://toppng.com/uploads/preview/icons-logos-emojis-user-icon-png-transparent-11563566676e32kbvynug.png"
+          class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">{{user.id}}</p>
+          <p class="card-text">{{user.name}}</p>
+          <p class="card-text">{{user.email}}</p>
+          <p class="card-text">{{user.phone}}</p>
+          <p class="card-text">{{user.address.city}}</p>
+          <button class="btn btn-primary" [routerLink]="['/userdetails',user.id]">Details</button>
         </div>
       </div>
+    </div>
     }
   </div>
 </div>

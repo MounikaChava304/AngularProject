@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class EmployeeService {
-  
+
   employees = [
     { "eId": 101, "name": "sanjay", "sal": 5000, "gender": "male" },
     { "eId": 104, "name": "geeta", "sal": 8000, "gender": "female" },
